@@ -1,254 +1,353 @@
-soil-lab-platform/
-├── app/
-│   ├── src/main/java/com/example/soillab/
-│   │   ├── SoilLabApp.kt
-│   │   └── MainActivity.kt
-│   └── build.gradle.kts
-├── core/
-│   ├── di/
-│   │   ├── AppModule.kt
-│   │   ├── ViewModelModule.kt
-│   │   └── NetworkModule.kt
-│   ├── common/
-│   │   ├── Extensions.kt
-│   │   ├── Constants.kt
-│   │   └── Formatters.kt
-│   ├── theme/
-│   │   ├── Color.kt
-│   │   ├── Typography.kt
-│   │   └── Shapes.kt
-│   ├── navigation/
-│   │   ├── AppScreen.kt
-│   │   ├── NavGraph.kt
-│   │   └── BottomBar.kt
-│   └── security/
-│       ├── DataEncryption.kt
-│       ├── BiometricAuth.kt
-│       └── PermissionManager.kt
-├── data/
-│   ├── repositories/
-│   │   ├── SoilTestRepository.kt
-│   │   ├── ProjectRepository.kt
-│   │   └── UserRepository.kt
-│   ├── models/
-│   │   ├── enhanced/
-│   │   │   ├── EnhancedTestInfo.kt
-│   │   │   ├── GeoLocation.kt
-│   │   │   └── ClientInfo.kt
-│   │   ├── international/
-│   │   │   ├── AASHTOSpecs.kt
-│   │   │   ├── ASTMStandards.kt
-│   │   │   └── EuroCodes.kt
-│   │   └── ai/
-│   │       ├── SoilBehaviorAnalysis.kt
-│   │       └── PredictionModels.kt
-│   ├── database/
-│   │   ├── SoilLabDatabase.kt
-│   │   ├── dao/
-│   │   │   ├── TestResultsDao.kt
-│   │   │   └── ProjectsDao.kt
-│   │   └── migrations/
-│   └── remote/
-│       ├── api/
-│       ├── websocket/
-│       └── sync/
-├── domain/
-│   ├── usecases/
-│   │   ├── soilanalysis/
-│   │   │   ├── AnalyzeSoilBehavior.kt
-│   │   │   ├── PredictProperties.kt
-│   │   │   └── ValidateTestResults.kt
-│   │   ├── reports/
-│   │   │   ├── GenerateComprehensiveReport.kt
-│   │   │   ├── ExportToPdf.kt
-│   │   │   └── ShareResults.kt
-│   │   └── management/
-│   │       ├── ManageProjects.kt
-│   │       ├── SyncData.kt
-│   │       └── BackupData.kt
-│   ├── repositories/
-│   │   ├── ISoilTestRepository.kt
-│   │   ├── IProjectRepository.kt
-│   │   └── IUserRepository.kt
-│   └── entities/
-│       ├── SoilTest.kt
-│       ├── Project.kt
-│       ├── Laboratory.kt
-│       └── Engineer.kt
-├── features/
-│   ├── dashboard/
-│   │   ├── ui/
-│   │   │   ├── DashboardScreen.kt
-│   │   │   ├── StatsOverview.kt
-│   │   │   └── RecentActivity.kt
-│   │   └── viewmodel/
-│   │       └── DashboardViewModel.kt
-│   ├── atterberg/
-│   │   ├── ui/
-│   │   │   ├── AtterbergEnhancedScreen.kt
-│   │   │   ├── LiquidLimitWizard.kt
-│   │   │   └── PlasticLimitWizard.kt
-│   │   ├── viewmodel/
-│   │   │   └── AtterbergViewModel.kt
-│   │   └── components/
-│   │       ├── FlowCurveChart.kt
-│   │       └── PlasticityChart.kt
-│   ├── cbr/
-│   │   ├── ui/
-│   │   │   ├── CBREnhancedScreen.kt
-│   │   │   ├── PenetrationCurve.kt
-│   │   │   └── CBRResults.kt
-│   │   ├── viewmodel/
-│   │   │   └── CBRViewModel.kt
-│   │   └── components/
-│   │       ├── CBRChart.kt
-│   │       └── EngineeringProperties.kt
-│   ├── sieveanalysis/
-│   │   ├── ui/
-│   │   │   ├── SieveEnhancedScreen.kt
-│   │   │   ├── GradationChart.kt
-│   │   │   └── SpecificationCompliance.kt
-│   │   ├── viewmodel/
-│   │   │   └── SieveViewModel.kt
-│   │   └── components/
-│   │       ├── SieveTable.kt
-│   │       └── ParticleDistribution.kt
-│   ├── proctor/
-│   │   ├── ui/
-│   │   │   ├── ProctorEnhancedScreen.kt
-│   │   │   ├── CompactionCurve.kt
-│   │   │   └── DensityMoisture.kt
-│   │   ├── viewmodel/
-│   │   │   └── ProctorViewModel.kt
-│   │   └── components/
-│   │       ├── ProctorChart.kt
-│   │       └── ZAVCurve.kt
-│   ├── aggregate/
-│   │   ├── quality/
-│   │   │   ├── ui/
-│   │   │   │   ├── AggregateQualityScreen.kt
-│   │   │   │   ├── LAAbrasionTest.kt
-│   │   │   │   └── FlakinessTest.kt
-│   │   │   └── viewmodel/
-│   │   │       └── AggregateViewModel.kt
-│   │   └── gradation/
-│   │       ├── ui/
-│   │       │   └── AggregateGradation.kt
-│   │       └── viewmodel/
-│   │           └── GradationViewModel.kt
-│   ├── specificgravity/
-│   │   ├── ui/
-│   │   │   ├── SpecificGravityScreen.kt
-│   │   │   ├── FineSoilTest.kt
-│   │   │   └── CoarseAggregateTest.kt
-│   │   └── viewmodel/
-│   │       └── SpecificGravityViewModel.kt
-│   ├── fielddensity/
-│   │   ├── ui/
-│   │   │   ├── FieldDensityScreen.kt
-│   │   │   ├── SandConeTest.kt
-│   │   │   └── NuclearDensity.kt
-│   │   └── viewmodel/
-│   │       └── FieldDensityViewModel.kt
-│   └── projectmanagement/
-│       ├── ui/
-│       │   ├── ProjectListScreen.kt
-│       │   ├── ProjectDetails.kt
-│       │   └── CreateProject.kt
-│       └── viewmodel/
-│           └── ProjectViewModel.kt
-├── lab/
-│   ├── standards/
-│   │   ├── AASHTO/
-│   │   │   ├── AASHTO_M145.kt
-│   │   │   ├── AASHTO_T89.kt
-│   │   │   ├── AASHTO_T90.kt
-│   │   │   └── AASHTO_T99.kt
-│   │   ├── ASTM/
-│   │   │   ├── ASTM_D4318.kt
-│   │   │   ├── ASTM_D698.kt
-│   │   │   ├── ASTM_D1557.kt
-│   │   │   └── ASTM_D1883.kt
-│   │   └── BS/
-│   │       ├── BS_1377.kt
-│   │       └── BS_5930.kt
-│   ├── calculators/
-│   │   ├── SoilClassificationCalculator.kt
-│   │   ├── CompactionCalculator.kt
-│   │   ├── BearingCapacityCalculator.kt
-│   │   └── SettlementCalculator.kt
-│   └── validators/
-│       ├── TestDataValidator.kt
-│       ├── SpecificationValidator.kt
-│       └── QualityControl.kt
-├── international/
-│   ├── specifications/
-│   │   ├── SaudiSpecifications.kt
-│   │   ├── USSpecifications.kt
-│   │   ├── EuropeanSpecifications.kt
-│   │   └── BritishSpecifications.kt
-│   ├── compliance/
-│   │   ├── SpecificationChecker.kt
-│   │   ├── ComplianceReport.kt
-│   │   └── CrossStandardMapping.kt
-│   └── localization/
-│       ├── ArabicStrings.kt
-│       ├── EnglishStrings.kt
-│       └── LocalizationManager.kt
-├── ai/
-│   ├── analysis/
-│   │   ├── SoilBehaviorAnalyzer.kt
-│   │   ├── PatternRecognizer.kt
-│   │   └── AnomalyDetector.kt
-│   ├── prediction/
-│   │   ├── PropertyPredictor.kt
-│   │   ├── BehaviorForecaster.kt
-│   │   └── PerformanceEstimator.kt
-│   ├── mlmodels/
-│   │   ├── NeuralNetworkModels.kt
-│   │   ├── RandomForestModels.kt
-│   │   └── ModelManager.kt
-│   └── recommendations/
-│       ├── ConstructionAdvisor.kt
-│       ├── MaterialRecommender.kt
-│       └── OptimizationSuggestor.kt
-├── reports/
-│   ├── generators/
-│   │   ├── PDFReportGenerator.kt
-│   │   ├── ExcelReportGenerator.kt
-│   │   └── WebReportGenerator.kt
-│   ├── templates/
-│   │   ├── ExecutiveSummary.kt
-│   │   ├── TechnicalReport.kt
-│   │   ├── ComplianceCertificate.kt
-│   │   └── QualityAssurance.kt
-│   ├── exports/
-│   │   ├── PDFExporter.kt
-│   │   ├── ExcelExporter.kt
-│   │   └── CloudExporter.kt
-│   └── sharing/
-│       ├── EmailSharing.kt
-│       ├── CloudSharing.kt
-│       └── APISharing.kt
-└── components/
-    ├── ui/
-    │   ├── charts/
-    │   │   ├── EnhancedLineChart.kt
-    │   │   ├── InteractiveScatterPlot.kt
-    │   │   └── StatisticalCharts.kt
-    │   ├── inputs/
-    │   │   ├── SmartInputField.kt
-    │   │   ├── DataTable.kt
-    │   │   └── FormulaCalculator.kt
-    │   └── cards/
-    │       ├── TestCard.kt
-    │       ├── ResultCard.kt
-    │       └── StatCard.kt
-    ├── utils/
-    │   ├── FileManager.kt
-    │   ├── ImageProcessor.kt
-    │   └── DataConverter.kt
-    └── widgets/
-        ├── DashboardWidgets.kt
-        ├── ProgressTrackers.kt
-        └── NotificationCenter.kt
+{
+  "app": {
+    "src": {
+      "main": {
+        "java": {
+          "com": {
+            "example": {
+              "soillab": {
+                "SoilLabApp.kt": "// محتوى SoilLabApp.kt",
+                "MainActivity.kt": "// محتوى MainActivity.kt"
+              }
+            }
+          }
+        },
+        "build.gradle.kts": "// محتوى build.gradle.kts"
+      }
+    }
+  },
+  "core": {
+    "di": {
+      "AppModule.kt": "// محتوى AppModule.kt",
+      "ViewModelModule.kt": "// محتوى ViewModelModule.kt",
+      "NetworkModule.kt": "// محتوى NetworkModule.kt"
+    },
+    "common": {
+      "Extensions.kt": "// محتوى Extensions.kt",
+      "Constants.kt": "// محتوى Constants.kt",
+      "Formatters.kt": "// محتوى Formatters.kt"
+    },
+    "theme": {
+      "Color.kt": "// محتوى Color.kt",
+      "Typography.kt": "// محتوى Typography.kt",
+      "Shapes.kt": "// محتوى Shapes.kt"
+    },
+    "navigation": {
+      "AppScreen.kt": "// محتوى AppScreen.kt",
+      "NavGraph.kt": "// محتوى NavGraph.kt",
+      "BottomBar.kt": "// محتوى BottomBar.kt"
+    },
+    "security": {
+      "DataEncryption.kt": "// محتوى DataEncryption.kt",
+      "BiometricAuth.kt": "// محتوى BiometricAuth.kt",
+      "PermissionManager.kt": "// محتوى PermissionManager.kt"
+    }
+  },
+  "data": {
+    "repositories": {
+      "SoilTestRepository.kt": "// محتوى SoilTestRepository.kt",
+      "ProjectRepository.kt": "// محتوى ProjectRepository.kt",
+      "UserRepository.kt": "// محتوى UserRepository.kt"
+    },
+    "models": {
+      "enhanced": {
+        "EnhancedTestInfo.kt": "// محتوى EnhancedTestInfo.kt",
+        "GeoLocation.kt": "// محتوى GeoLocation.kt",
+        "ClientInfo.kt": "// محتوى ClientInfo.kt"
+      },
+      "international": {
+        "AASHTOSpecs.kt": "// محتوى AASHTOSpecs.kt",
+        "ASTMStandards.kt": "// محتوى ASTMStandards.kt",
+        "EuroCodes.kt": "// محتوى EuroCodes.kt"
+      },
+      "ai": {
+        "SoilBehaviorAnalysis.kt": "// محتوى SoilBehaviorAnalysis.kt",
+        "PredictionModels.kt": "// محتوى PredictionModels.kt"
+      }
+    },
+    "database": {
+      "SoilLabDatabase.kt": "// محتوى SoilLabDatabase.kt",
+      "dao": {
+        "TestResultsDao.kt": "// محتوى TestResultsDao.kt",
+        "ProjectsDao.kt": "// محتوى ProjectsDao.kt"
+      },
+      "migrations": {}
+    },
+    "remote": {
+      "api": {},
+      "websocket": {},
+      "sync": {}
+    }
+  },
+  "domain": {
+    "usecases": {
+      "soilanalysis": {
+        "AnalyzeSoilBehavior.kt": "// محتوى AnalyzeSoilBehavior.kt",
+        "PredictProperties.kt": "// محتوى PredictProperties.kt",
+        "ValidateTestResults.kt": "// محتوى ValidateTestResults.kt"
+      },
+      "reports": {
+        "GenerateComprehensiveReport.kt": "// محتوى GenerateComprehensiveReport.kt",
+        "ExportToPdf.kt": "// محتوى ExportToPdf.kt",
+        "ShareResults.kt": "// محتوى ShareResults.kt"
+      },
+      "management": {
+        "ManageProjects.kt": "// محتوى ManageProjects.kt",
+        "SyncData.kt": "// محتوى SyncData.kt",
+        "BackupData.kt": "// محتوى BackupData.kt"
+      }
+    },
+    "repositories": {
+      "ISoilTestRepository.kt": "// محتوى ISoilTestRepository.kt",
+      "IProjectRepository.kt": "// محتوى IProjectRepository.kt",
+      "IUserRepository.kt": "// محتوى IUserRepository.kt"
+    },
+    "entities": {
+      "SoilTest.kt": "// محتوى SoilTest.kt",
+      "Project.kt": "// محتوى Project.kt",
+      "Laboratory.kt": "// محتوى Laboratory.kt",
+      "Engineer.kt": "// محتوى Engineer.kt"
+    }
+  },
+  "features": {
+    "dashboard": {
+      "ui": {
+        "DashboardScreen.kt": "// محتوى DashboardScreen.kt",
+        "StatsOverview.kt": "// محتوى StatsOverview.kt",
+        "RecentActivity.kt": "// محتوى RecentActivity.kt"
+      },
+      "viewmodel": {
+        "DashboardViewModel.kt": "// محتوى DashboardViewModel.kt"
+      }
+    },
+    "atterberg": {
+      "ui": {
+        "AtterbergEnhancedScreen.kt": "// محتوى AtterbergEnhancedScreen.kt",
+        "LiquidLimitWizard.kt": "// محتوى LiquidLimitWizard.kt",
+        "PlasticLimitWizard.kt": "// محتوى PlasticLimitWizard.kt"
+      },
+      "viewmodel": {
+        "AtterbergViewModel.kt": "// محتوى AtterbergViewModel.kt"
+      },
+      "components": {
+        "FlowCurveChart.kt": "// محتوى FlowCurveChart.kt",
+        "PlasticityChart.kt": "// محتوى PlasticityChart.kt"
+      }
+    },
+    "cbr": {
+      "ui": {
+        "CBREnhancedScreen.kt": "// محتوى CBREnhancedScreen.kt",
+        "PenetrationCurve.kt": "// محتوى PenetrationCurve.kt",
+        "CBRResults.kt": "// محتوى CBRResults.kt"
+      },
+      "viewmodel": {
+        "CBRViewModel.kt": "// محتوى CBRViewModel.kt"
+      },
+      "components": {
+        "CBRChart.kt": "// محتوى CBRChart.kt",
+        "EngineeringProperties.kt": "// محتوى EngineeringProperties.kt"
+      }
+    },
+    "sieveanalysis": {
+      "ui": {
+        "SieveEnhancedScreen.kt": "// محتوى SieveEnhancedScreen.kt",
+        "GradationChart.kt": "// محتوى GradationChart.kt",
+        "SpecificationCompliance.kt": "// محتوى SpecificationCompliance.kt"
+      },
+      "viewmodel": {
+        "SieveViewModel.kt": "// محتوى SieveViewModel.kt"
+      },
+      "components": {
+        "SieveTable.kt": "// محتوى SieveTable.kt",
+        "ParticleDistribution.kt": "// محتوى ParticleDistribution.kt"
+      }
+    },
+    "proctor": {
+      "ui": {
+        "ProctorEnhancedScreen.kt": "// محتوى ProctorEnhancedScreen.kt",
+        "CompactionCurve.kt": "// محتوى CompactionCurve.kt",
+        "DensityMoisture.kt": "// محتوى DensityMoisture.kt"
+      },
+      "viewmodel": {
+        "ProctorViewModel.kt": "// محتوى ProctorViewModel.kt"
+      },
+      "components": {
+        "ProctorChart.kt": "// محتوى ProctorChart.kt",
+        "ZAVCurve.kt": "// محتوى ZAVCurve.kt"
+      }
+    },
+    "aggregate": {
+      "quality": {
+        "ui": {
+          "AggregateQualityScreen.kt": "// محتوى AggregateQualityScreen.kt",
+          "LAAbrasionTest.kt": "// محتوى LAAbrasionTest.kt",
+          "FlakinessTest.kt": "// محتوى FlakinessTest.kt"
+        },
+        "viewmodel": {
+          "AggregateViewModel.kt": "// محتوى AggregateViewModel.kt"
+        }
+      },
+      "gradation": {
+        "ui": {
+          "AggregateGradation.kt": "// محتوى AggregateGradation.kt"
+        },
+        "viewmodel": {
+          "GradationViewModel.kt": "// محتوى GradationViewModel.kt"
+        }
+      }
+    },
+    "specificgravity": {
+      "ui": {
+        "SpecificGravityScreen.kt": "// محتوى SpecificGravityScreen.kt",
+        "FineSoilTest.kt": "// محتوى FineSoilTest.kt",
+        "CoarseAggregateTest.kt": "// محتوى CoarseAggregateTest.kt"
+      },
+      "viewmodel": {
+        "SpecificGravityViewModel.kt": "// محتوى SpecificGravityViewModel.kt"
+      }
+    },
+    "fielddensity": {
+      "ui": {
+        "FieldDensityScreen.kt": "// محتوى FieldDensityScreen.kt",
+        "SandConeTest.kt": "// محتوى SandConeTest.kt",
+        "NuclearDensity.kt": "// محتوى NuclearDensity.kt"
+      },
+      "viewmodel": {
+        "FieldDensityViewModel.kt": "// محتوى FieldDensityViewModel.kt"
+      }
+    },
+    "projectmanagement": {
+      "ui": {
+        "ProjectListScreen.kt": "// محتوى ProjectListScreen.kt",
+        "ProjectDetails.kt": "// محتوى ProjectDetails.kt",
+        "CreateProject.kt": "// محتوى CreateProject.kt"
+      },
+      "viewmodel": {
+        "ProjectViewModel.kt": "// محتوى ProjectViewModel.kt"
+      }
+    }
+  },
+  "lab": {
+    "standards": {
+      "AASHTO": {
+        "AASHTO_M145.kt": "// محتوى AASHTO_M145.kt",
+        "AASHTO_T89.kt": "// محتوى AASHTO_T89.kt",
+        "AASHTO_T90.kt": "// محتوى AASHTO_T90.kt",
+        "AASHTO_T99.kt": "// محتوى AASHTO_T99.kt"
+      },
+      "ASTM": {
+        "ASTM_D4318.kt": "// محتوى ASTM_D4318.kt",
+        "ASTM_D698.kt": "// محتوى ASTM_D698.kt",
+        "ASTM_D1557.kt": "// محتوى ASTM_D1557.kt",
+        "ASTM_D1883.kt": "// محتوى ASTM_D1883.kt"
+      },
+      "BS": {
+        "BS_1377.kt": "// محتوى BS_1377.kt",
+        "BS_5930.kt": "// محتوى BS_5930.kt"
+      }
+    },
+    "calculators": {
+      "SoilClassificationCalculator.kt": "// محتوى SoilClassificationCalculator.kt",
+      "CompactionCalculator.kt": "// محتوى CompactionCalculator.kt",
+      "BearingCapacityCalculator.kt": "// محتوى BearingCapacityCalculator.kt",
+      "SettlementCalculator.kt": "// محتوى SettlementCalculator.kt"
+    },
+    "validators": {
+      "TestDataValidator.kt": "// محتوى TestDataValidator.kt",
+      "SpecificationValidator.kt": "// محتوى SpecificationValidator.kt",
+      "QualityControl.kt": "// محتوى QualityControl.kt"
+    }
+  },
+  "international": {
+    "specifications": {
+      "SaudiSpecifications.kt": "// محتوى SaudiSpecifications.kt",
+      "USSpecifications.kt": "// محتوى USSpecifications.kt",
+      "EuropeanSpecifications.kt": "// محتوى EuropeanSpecifications.kt",
+      "BritishSpecifications.kt": "// محتوى BritishSpecifications.kt"
+    },
+    "compliance": {
+      "SpecificationChecker.kt": "// محتوى SpecificationChecker.kt",
+      "ComplianceReport.kt": "// محتوى ComplianceReport.kt",
+      "CrossStandardMapping.kt": "// محتوى CrossStandardMapping.kt"
+    },
+    "localization": {
+      "ArabicStrings.kt": "// محتوى ArabicStrings.kt",
+      "EnglishStrings.kt": "// محتوى EnglishStrings.kt",
+      "LocalizationManager.kt": "// محتوى LocalizationManager.kt"
+    }
+  },
+  "ai": {
+    "analysis": {
+      "SoilBehaviorAnalyzer.kt": "// محتوى SoilBehaviorAnalyzer.kt",
+      "PatternRecognizer.kt": "// محتوى PatternRecognizer.kt",
+      "AnomalyDetector.kt": "// محتوى AnomalyDetector.kt"
+    },
+    "prediction": {
+      "PropertyPredictor.kt": "// محتوى PropertyPredictor.kt",
+      "BehaviorForecaster.kt": "// محتوى BehaviorForecaster.kt",
+      "PerformanceEstimator.kt": "// محتوى PerformanceEstimator.kt"
+    },
+    "mlmodels": {
+      "NeuralNetworkModels.kt": "// محتوى NeuralNetworkModels.kt",
+      "RandomForestModels.kt": "// محتوى RandomForestModels.kt",
+      "ModelManager.kt": "// محتوى ModelManager.kt"
+    },
+    "recommendations": {
+      "ConstructionAdvisor.kt": "// محتوى ConstructionAdvisor.kt",
+      "MaterialRecommender.kt": "// محتوى MaterialRecommender.kt",
+      "OptimizationSuggestor.kt": "// محتوى OptimizationSuggestor.kt"
+    }
+  },
+  "reports": {
+    "generators": {
+      "PDFReportGenerator.kt": "// محتوى PDFReportGenerator.kt",
+      "ExcelReportGenerator.kt": "// محتوى ExcelReportGenerator.kt",
+      "WebReportGenerator.kt": "// محتوى WebReportGenerator.kt"
+    },
+    "templates": {
+      "ExecutiveSummary.kt": "// محتوى ExecutiveSummary.kt",
+      "TechnicalReport.kt": "// محتوى TechnicalReport.kt",
+      "ComplianceCertificate.kt": "// محتوى ComplianceCertificate.kt",
+      "QualityAssurance.kt": "// محتوى QualityAssurance.kt"
+    },
+    "exports": {
+      "PDFExporter.kt": "// محتوى PDFExporter.kt",
+      "ExcelExporter.kt": "// محتوى ExcelExporter.kt",
+      "CloudExporter.kt": "// محتوى CloudExporter.kt"
+    },
+    "sharing": {
+      "EmailSharing.kt": "// محتوى EmailSharing.kt",
+      "CloudSharing.kt": "// محتوى CloudSharing.kt",
+      "APISharing.kt": "// محتوى APISharing.kt"
+    }
+  },
+  "components": {
+    "ui": {
+      "charts": {
+        "EnhancedLineChart.kt": "// محتوى EnhancedLineChart.kt",
+        "InteractiveScatterPlot.kt": "// محتوى InteractiveScatterPlot.kt",
+        "StatisticalCharts.kt": "// محتوى StatisticalCharts.kt"
+      },
+      "inputs": {
+        "SmartInputField.kt": "// محتوى SmartInputField.kt",
+        "DataTable.kt": "// محتوى DataTable.kt",
+        "FormulaCalculator.kt": "// محتوى FormulaCalculator.kt"
+      },
+      "cards": {
+        "TestCard.kt": "// محتوى TestCard.kt",
+        "ResultCard.kt": "// محتوى ResultCard.kt",
+        "StatCard.kt": "// محتوى StatCard.kt"
+      }
+    },
+    "utils": {
+      "FileManager.kt": "// محتوى FileManager.kt",
+      "ImageProcessor.kt": "// محتوى ImageProcessor.kt",
+      "DataConverter.kt": "// محتوى DataConverter.kt"
+    },
+    "widgets": {
+      "DashboardWidgets.kt": "// محتوى DashboardWidgets.kt",
+      "ProgressTrackers.kt": "// محتوى ProgressTrackers.kt",
+      "NotificationCenter.kt": "// محتوى NotificationCenter.kt"
+    }
+  }
+}
