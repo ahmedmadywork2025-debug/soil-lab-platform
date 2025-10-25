@@ -1,0 +1,254 @@
+soil-lab-platform/
+├── app/
+│   ├── src/main/java/com/example/soillab/
+│   │   ├── SoilLabApp.kt
+│   │   └── MainActivity.kt
+│   └── build.gradle.kts
+├── core/
+│   ├── di/
+│   │   ├── AppModule.kt
+│   │   ├── ViewModelModule.kt
+│   │   └── NetworkModule.kt
+│   ├── common/
+│   │   ├── Extensions.kt
+│   │   ├── Constants.kt
+│   │   └── Formatters.kt
+│   ├── theme/
+│   │   ├── Color.kt
+│   │   ├── Typography.kt
+│   │   └── Shapes.kt
+│   ├── navigation/
+│   │   ├── AppScreen.kt
+│   │   ├── NavGraph.kt
+│   │   └── BottomBar.kt
+│   └── security/
+│       ├── DataEncryption.kt
+│       ├── BiometricAuth.kt
+│       └── PermissionManager.kt
+├── data/
+│   ├── repositories/
+│   │   ├── SoilTestRepository.kt
+│   │   ├── ProjectRepository.kt
+│   │   └── UserRepository.kt
+│   ├── models/
+│   │   ├── enhanced/
+│   │   │   ├── EnhancedTestInfo.kt
+│   │   │   ├── GeoLocation.kt
+│   │   │   └── ClientInfo.kt
+│   │   ├── international/
+│   │   │   ├── AASHTOSpecs.kt
+│   │   │   ├── ASTMStandards.kt
+│   │   │   └── EuroCodes.kt
+│   │   └── ai/
+│   │       ├── SoilBehaviorAnalysis.kt
+│   │       └── PredictionModels.kt
+│   ├── database/
+│   │   ├── SoilLabDatabase.kt
+│   │   ├── dao/
+│   │   │   ├── TestResultsDao.kt
+│   │   │   └── ProjectsDao.kt
+│   │   └── migrations/
+│   └── remote/
+│       ├── api/
+│       ├── websocket/
+│       └── sync/
+├── domain/
+│   ├── usecases/
+│   │   ├── soilanalysis/
+│   │   │   ├── AnalyzeSoilBehavior.kt
+│   │   │   ├── PredictProperties.kt
+│   │   │   └── ValidateTestResults.kt
+│   │   ├── reports/
+│   │   │   ├── GenerateComprehensiveReport.kt
+│   │   │   ├── ExportToPdf.kt
+│   │   │   └── ShareResults.kt
+│   │   └── management/
+│   │       ├── ManageProjects.kt
+│   │       ├── SyncData.kt
+│   │       └── BackupData.kt
+│   ├── repositories/
+│   │   ├── ISoilTestRepository.kt
+│   │   ├── IProjectRepository.kt
+│   │   └── IUserRepository.kt
+│   └── entities/
+│       ├── SoilTest.kt
+│       ├── Project.kt
+│       ├── Laboratory.kt
+│       └── Engineer.kt
+├── features/
+│   ├── dashboard/
+│   │   ├── ui/
+│   │   │   ├── DashboardScreen.kt
+│   │   │   ├── StatsOverview.kt
+│   │   │   └── RecentActivity.kt
+│   │   └── viewmodel/
+│   │       └── DashboardViewModel.kt
+│   ├── atterberg/
+│   │   ├── ui/
+│   │   │   ├── AtterbergEnhancedScreen.kt
+│   │   │   ├── LiquidLimitWizard.kt
+│   │   │   └── PlasticLimitWizard.kt
+│   │   ├── viewmodel/
+│   │   │   └── AtterbergViewModel.kt
+│   │   └── components/
+│   │       ├── FlowCurveChart.kt
+│   │       └── PlasticityChart.kt
+│   ├── cbr/
+│   │   ├── ui/
+│   │   │   ├── CBREnhancedScreen.kt
+│   │   │   ├── PenetrationCurve.kt
+│   │   │   └── CBRResults.kt
+│   │   ├── viewmodel/
+│   │   │   └── CBRViewModel.kt
+│   │   └── components/
+│   │       ├── CBRChart.kt
+│   │       └── EngineeringProperties.kt
+│   ├── sieveanalysis/
+│   │   ├── ui/
+│   │   │   ├── SieveEnhancedScreen.kt
+│   │   │   ├── GradationChart.kt
+│   │   │   └── SpecificationCompliance.kt
+│   │   ├── viewmodel/
+│   │   │   └── SieveViewModel.kt
+│   │   └── components/
+│   │       ├── SieveTable.kt
+│   │       └── ParticleDistribution.kt
+│   ├── proctor/
+│   │   ├── ui/
+│   │   │   ├── ProctorEnhancedScreen.kt
+│   │   │   ├── CompactionCurve.kt
+│   │   │   └── DensityMoisture.kt
+│   │   ├── viewmodel/
+│   │   │   └── ProctorViewModel.kt
+│   │   └── components/
+│   │       ├── ProctorChart.kt
+│   │       └── ZAVCurve.kt
+│   ├── aggregate/
+│   │   ├── quality/
+│   │   │   ├── ui/
+│   │   │   │   ├── AggregateQualityScreen.kt
+│   │   │   │   ├── LAAbrasionTest.kt
+│   │   │   │   └── FlakinessTest.kt
+│   │   │   └── viewmodel/
+│   │   │       └── AggregateViewModel.kt
+│   │   └── gradation/
+│   │       ├── ui/
+│   │       │   └── AggregateGradation.kt
+│   │       └── viewmodel/
+│   │           └── GradationViewModel.kt
+│   ├── specificgravity/
+│   │   ├── ui/
+│   │   │   ├── SpecificGravityScreen.kt
+│   │   │   ├── FineSoilTest.kt
+│   │   │   └── CoarseAggregateTest.kt
+│   │   └── viewmodel/
+│   │       └── SpecificGravityViewModel.kt
+│   ├── fielddensity/
+│   │   ├── ui/
+│   │   │   ├── FieldDensityScreen.kt
+│   │   │   ├── SandConeTest.kt
+│   │   │   └── NuclearDensity.kt
+│   │   └── viewmodel/
+│   │       └── FieldDensityViewModel.kt
+│   └── projectmanagement/
+│       ├── ui/
+│       │   ├── ProjectListScreen.kt
+│       │   ├── ProjectDetails.kt
+│       │   └── CreateProject.kt
+│       └── viewmodel/
+│           └── ProjectViewModel.kt
+├── lab/
+│   ├── standards/
+│   │   ├── AASHTO/
+│   │   │   ├── AASHTO_M145.kt
+│   │   │   ├── AASHTO_T89.kt
+│   │   │   ├── AASHTO_T90.kt
+│   │   │   └── AASHTO_T99.kt
+│   │   ├── ASTM/
+│   │   │   ├── ASTM_D4318.kt
+│   │   │   ├── ASTM_D698.kt
+│   │   │   ├── ASTM_D1557.kt
+│   │   │   └── ASTM_D1883.kt
+│   │   └── BS/
+│   │       ├── BS_1377.kt
+│   │       └── BS_5930.kt
+│   ├── calculators/
+│   │   ├── SoilClassificationCalculator.kt
+│   │   ├── CompactionCalculator.kt
+│   │   ├── BearingCapacityCalculator.kt
+│   │   └── SettlementCalculator.kt
+│   └── validators/
+│       ├── TestDataValidator.kt
+│       ├── SpecificationValidator.kt
+│       └── QualityControl.kt
+├── international/
+│   ├── specifications/
+│   │   ├── SaudiSpecifications.kt
+│   │   ├── USSpecifications.kt
+│   │   ├── EuropeanSpecifications.kt
+│   │   └── BritishSpecifications.kt
+│   ├── compliance/
+│   │   ├── SpecificationChecker.kt
+│   │   ├── ComplianceReport.kt
+│   │   └── CrossStandardMapping.kt
+│   └── localization/
+│       ├── ArabicStrings.kt
+│       ├── EnglishStrings.kt
+│       └── LocalizationManager.kt
+├── ai/
+│   ├── analysis/
+│   │   ├── SoilBehaviorAnalyzer.kt
+│   │   ├── PatternRecognizer.kt
+│   │   └── AnomalyDetector.kt
+│   ├── prediction/
+│   │   ├── PropertyPredictor.kt
+│   │   ├── BehaviorForecaster.kt
+│   │   └── PerformanceEstimator.kt
+│   ├── mlmodels/
+│   │   ├── NeuralNetworkModels.kt
+│   │   ├── RandomForestModels.kt
+│   │   └── ModelManager.kt
+│   └── recommendations/
+│       ├── ConstructionAdvisor.kt
+│       ├── MaterialRecommender.kt
+│       └── OptimizationSuggestor.kt
+├── reports/
+│   ├── generators/
+│   │   ├── PDFReportGenerator.kt
+│   │   ├── ExcelReportGenerator.kt
+│   │   └── WebReportGenerator.kt
+│   ├── templates/
+│   │   ├── ExecutiveSummary.kt
+│   │   ├── TechnicalReport.kt
+│   │   ├── ComplianceCertificate.kt
+│   │   └── QualityAssurance.kt
+│   ├── exports/
+│   │   ├── PDFExporter.kt
+│   │   ├── ExcelExporter.kt
+│   │   └── CloudExporter.kt
+│   └── sharing/
+│       ├── EmailSharing.kt
+│       ├── CloudSharing.kt
+│       └── APISharing.kt
+└── components/
+    ├── ui/
+    │   ├── charts/
+    │   │   ├── EnhancedLineChart.kt
+    │   │   ├── InteractiveScatterPlot.kt
+    │   │   └── StatisticalCharts.kt
+    │   ├── inputs/
+    │   │   ├── SmartInputField.kt
+    │   │   ├── DataTable.kt
+    │   │   └── FormulaCalculator.kt
+    │   └── cards/
+    │       ├── TestCard.kt
+    │       ├── ResultCard.kt
+    │       └── StatCard.kt
+    ├── utils/
+    │   ├── FileManager.kt
+    │   ├── ImageProcessor.kt
+    │   └── DataConverter.kt
+    └── widgets/
+        ├── DashboardWidgets.kt
+        ├── ProgressTrackers.kt
+        └── NotificationCenter.kt
